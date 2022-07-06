@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>Vogelquiz</title>
+    <style type="text/css">
+      body {
+        background: black;
+        color: white;
+        font-family: Verdana, Geneva, sans-serif;
+      }
+      div.container {
+        margin: 50px auto;
+        text-align: center;
+      }
+      img {
+        border: 1px solid white;
+      }
+      button {
+        background-color: #CCCCCC;
+        margin: 0px 12px 0px 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 20px;
+        font-family: Verdana, Geneva, sans-serif;
+        color: black;
+        padding: 15px 0px;
+        text-align: center;
+        width: 300px;
+      }
+      .wrong {
+        background-color: #FF0000;
+      }
+      .right {
+        background-color: #22FF22;
+      }
+    </style>
+    <script>
+      function solve(clickedbird) {
+        document.getElementById(clickedbird).className = "wrong";
+        document.getElementById('{{shownbird}}').className = "right";
+        setTimeout("location.href = '/';", 2000);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Welcher Vogel ist das?</h2>
+      <img src="/img/{{shownbird}}.jpg" width="960" height="540"/>
+    </div>
+    <div class="container">
+      {% for bird in birds %}
+        <button id="{{ bird }}" onclick="solve('{{ bird }}');">{{ bird }}</button>
+      {% endfor %}
+    </div>
+  </body>
+</html>
